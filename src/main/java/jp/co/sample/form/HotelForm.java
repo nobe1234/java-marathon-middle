@@ -1,12 +1,12 @@
-package jp.co.sample.domain;
+package jp.co.sample.form;
 
 /**
- * ホテルの情報を表すクラス.
+ * ホテルの情報をリクエストパラメータとして受け取るフォーム.
  * 
  * @author soheinobe
  *
  */
-public class Hotel {
+public class HotelForm {
 
 	/** 主キー */
 	private Integer id;
@@ -23,6 +23,7 @@ public class Hotel {
 	/** 駐車場の有無 */
 	private String parking;
 
+	/**ゲッターとセッター*/
 	public Integer getId() {
 		return id;
 	}
