@@ -10,13 +10,13 @@
 <body>
 
 <strong>球団名</strong>
-<c:out value="${form.teamName}"></c:out><br><br>
+<c:out value="${baseballTeam.teamName}"></c:out><br><br>
 <strong>本拠地</strong>
-<c:out value="${form.headquarters}"></c:out><br><br>
+<c:out value="${baseballTeam.headquarters}"></c:out><br><br>
 <strong>発足</strong>
-<c:out value="${form.inauguration}"></c:out><br><br>
+<c:out value="${baseballTeam.inauguration}"></c:out><br><br>
 <strong>歴史</strong>
-　<pre><c:out value="${form.history}"></c:out></pre><br><br>
+　<pre><c:out value="${baseballTeam.history}"></c:out></pre><br><br>
 
 <form action="${pageContext.request.contextPath}/baseballTeam/index " method="post">
 <input type="submit" value="戻る">

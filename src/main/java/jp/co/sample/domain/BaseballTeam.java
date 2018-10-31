@@ -6,7 +6,7 @@ package jp.co.sample.domain;
  * @author soheinobe
  *
  */
-public class Baseball_Team {
+public class BaseballTeam {
 	/** 主キー */
 	private Integer id;
 	/** リーグ名 */

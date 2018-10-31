@@ -1,8 +1,12 @@
 package jp.co.sample.repository;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import jp.co.sample.form.HotelForm;
@@ -38,6 +42,17 @@ public class HotelRepository {
 		return hotelForm;
 	};
 	
-	
+	/**
+	 * 入力された価格以下のホテルを検索するメソッド.
+	 * 
+	 * @return 検索結果のテーブルが含まれたリスト.
+	 */
+	public List<HotelForm> findByLowName(Integer price){
+		String sql = "select id,area_name,hotel_name,address,nearest_station,price,parking from hotels "
+				+ "where price <= :price order by price";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("price", price);
+		List<HotelForm> hotelList = template.query(sql, param, HOTELFORM_ROW_MAPPER);
+		return hotelList;
+	}
 
 }

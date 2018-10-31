@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import jp.co.sample.form.BaseballTeamForm;
+import jp.co.sample.domain.BaseballTeam;
 import jp.co.sample.repository.BaseballTeamRepository;
 
 /**
@@ -42,7 +42,7 @@ public class BaseballTeamController {
 	 */
 	@RequestMapping("/index")
 	public String index() {
-		List<BaseballTeamForm> teamList = repository.findAll();
+		List<BaseballTeam> teamList = repository.findAll();
 		session.setAttribute("teamList", teamList);
 		// チーム一覧を表示
 		return "baseball/viewTeamList";
@@ -58,9 +58,9 @@ public class BaseballTeamController {
 	 * @return
 	 */
 	@RequestMapping("/showTeamDetail")
-	public String showTeamDetail(BaseballTeamForm form, Model model) {
-		form = repository.load(form.getId());
-		model.addAttribute("form", form);
+	public String showTeamDetail(BaseballTeam baseballTeamForm, Model model) {
+		BaseballTeam baseballTeam = repository.load(baseballTeamForm.getId());
+		model.addAttribute("baseballTeam", baseballTeam);
 		// チーム詳細の表示
 		return "/baseball/viewTeamDetail";
 	}
