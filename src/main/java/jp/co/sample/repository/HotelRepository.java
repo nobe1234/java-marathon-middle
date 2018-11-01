@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import jp.co.sample.form.HotelForm;
 
 /**
- *ホテル検索ページに使うリポジトリ.
+ * ホテル検索ページに使うリポジトリ.
  * 
  * 入力した価格以下のホテルテーブルリストを表示する.
  * 
@@ -41,13 +41,13 @@ public class HotelRepository {
 
 		return hotelForm;
 	};
-	
+
 	/**
 	 * 入力された価格以下のホテルを検索するメソッド.
 	 * 
 	 * @return 検索結果のテーブルが含まれたリスト.
 	 */
-	public List<HotelForm> findByLowName(Integer price){
+	public List<HotelForm> findByLowPrice(Integer price) {
 		String sql = "select id,area_name,hotel_name,address,nearest_station,price,parking from hotels "
 				+ "where price <= :price order by price";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("price", price);

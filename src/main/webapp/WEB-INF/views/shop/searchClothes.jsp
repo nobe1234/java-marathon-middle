@@ -18,8 +18,15 @@
 <td align="center"><h2><strong>洋服</strong>shop</h2></td>
 </tr>
 </table>
+<!-- フォームタグを使用 -->
+<form:form modelAttribute="shopForm" action="${pageContext.request.contextPath}/shop/searchClothes">
+<form:radiobutton path="gender" items="${genderMap}" label="Man" value="0"  /><br>
+<form:radiobutton path="gender" items="${genderMap}" label="Woman" value="1"  />
+<form:select path="color" items="${colorMap}" />
+<input type="submit" value="検索"> 
+</form:form>
+<%-- <!-- 自分で入力 -->
 <form action="${pageContext.request.contextPath }/shop/searchClothes" method="post">
-
 <input type="radio" name="gender" value="0">Man<br>
 <input type="radio" name="gender" value="1">Woman
 
@@ -30,10 +37,10 @@
 <option value="白">白</option>
 </select>
 
-<input type="submit" value="検索">
-
+<input type="submit" value="検索"> --%>
+<%-- 
 </form>
-
+ --%>
 <!-- 結果表示部分 -->
 <c:forEach var="shopList" items="${shopList}">
 <table border="1">

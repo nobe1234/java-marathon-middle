@@ -32,8 +32,8 @@ public class ShopService {
 	 * @param color
 	 * @return
 	 */
-	public List<Shop> findBySelect(Integer gender, String color) {
-		return repository.findBySelect(gender, color);
+	public List<Shop> findByGenderAndColor(Integer gender, String color) {
+		return repository.findByGenderAndColor(gender, color);
 	}
 
 }

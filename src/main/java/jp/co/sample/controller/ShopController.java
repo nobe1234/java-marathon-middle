@@ -1,14 +1,20 @@
 package jp.co.sample.controller;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.sample.domain.Shop;
+import jp.co.sample.form.ShopForm;
 import jp.co.sample.service.ShopService;
 
 /**
@@ -28,6 +34,11 @@ public class ShopController {
 	@Autowired
 	private ShopService service;
 
+	@ModelAttribute
+	public ShopForm setUpForm() {
+		return new ShopForm();
+	}
+
 	/**
 	 * 処理の起点となるメソッド.
 	 * 
@@ -36,7 +47,21 @@ public class ShopController {
 	 * @return 検索画面
 	 */
 	@RequestMapping("/index")
-	public String index() {
+	public String index(Model model) {
+		Map<Integer, String> genderMap = new LinkedHashMap<>();
+		genderMap.put(0, "Man");
+		genderMap.put(1, "Woman");
+		model.addAttribute("genderMap", genderMap);
+
+		// リストにすると順番をそのまま、かつjspでLIstから取り出すだけでOK
+		// 選択肢名はタグの外にかく。
+		Map<String, String> colorMap = new LinkedHashMap<>();
+		colorMap.put("赤", "赤");
+		colorMap.put("青", "青");
+		colorMap.put("黄", "黄");
+		colorMap.put("白", "白");
+		model.addAttribute("colorMap", colorMap);
+
 		return "/shop/searchClothes";
 	}
 
@@ -48,11 +73,38 @@ public class ShopController {
 	 * @return 検索結果
 	 */
 	@RequestMapping("/searchClothes")
-	public String showSelectClothes(Integer gender, String color, Model model) {
-		List<Shop> shopList = service.findBySelect(gender, color);
-		model.addAttribute("shopList", shopList);
+	public String showSelectClothes(ShopForm shopForm, Model model) {
+//		Shop shop = new Shop();
+//		BeanUtils.copyProperties(form, shop);
+//
+//		List<Integer> genderList = new ArrayList<>();
+//		for (Integer gender : form.getGenderList()) {
+//			switch (gender) {
+//			case 0:
+//				genderList.add(0);
+//				break;
+//
+//			case 1:
+//				genderList.add(1);
+//				break;
+//			}
+//
+//		}
 
-		return "/shop/searchClothes";
+		List<Shop> shopList = service.findByGenderAndColor(shopForm.getGender(), shopForm.getColor());
+		model.addAttribute("shopList", shopList);
+		//すでにインスタンス化されているので、インスタンス化不要。
+//		ShopController controller = new ShopController();
+
+		return index(model);
 	}
+
+//	@RequestMapping("/searchClothes")
+//	public String showSelectClothes(Integer gender, String color, Model model) {
+//		List<Shop> shopList = service.findBySelect(gender, color);
+//		model.addAttribute("shopList", shopList);
+//		
+//		return "/shop/searchClothes";
+//	}
 
 }

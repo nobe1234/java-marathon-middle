@@ -1,5 +1,7 @@
 package jp.co.sample.domain;
 
+import java.util.List;
+
 /**
  * ショップのデータを表すドメイン.
  * 
@@ -22,6 +24,26 @@ public class Shop {
 	private Integer price;
 	/** サイズ */
 	private String size;
+	/** 性別リスト */
+	private List<Integer> genderList;
+	/** 色リスト */
+	private List<Integer> colorList;
+
+	public List<Integer> getGenderList() {
+		return genderList;
+	}
+
+	public void setGenderList(List<Integer> genderList) {
+		this.genderList = genderList;
+	}
+
+	public List<Integer> getColorList() {
+		return colorList;
+	}
+
+	public void setColorList(List<Integer> colorList) {
+		this.colorList = colorList;
+	}
 
 	public Integer getId() {
 		return id;
@@ -82,7 +104,8 @@ public class Shop {
 	@Override
 	public String toString() {
 		return "Shop [id=" + id + ", category=" + category + ", genre=" + genre + ", gender=" + gender + ", color="
-				+ color + ", price=" + price + ", size=" + size + "]";
+				+ color + ", price=" + price + ", size=" + size + ", genderList=" + genderList + ", colorList="
+				+ colorList + "]";
 	}
 
 }

@@ -6,7 +6,7 @@ package jp.co.sample.form;
  * @author soheinobe
  *
  */
-public class BaseballTeam {
+public class BaseballTeamForm {
 
 	/** 主キー */
 	private Integer id;

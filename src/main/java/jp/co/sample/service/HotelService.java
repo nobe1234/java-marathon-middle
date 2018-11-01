@@ -31,7 +31,7 @@ public class HotelService {
 	 * @return　価格検索メソッド.
 	 */
 	public List<HotelForm> findByLowPrice(Integer price){
-		return repository.findByLowName(price);
+		return repository.findByLowPrice(price);
 	}
 
 }

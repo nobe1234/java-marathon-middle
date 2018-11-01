@@ -14,7 +14,7 @@ import jp.co.sample.domain.Shop;
 /**
  * 洋服ショップ検索サイトの検索メソッドを定義するリポジトリ.
  * 
- * 受け取るリクエストパラメータは性別,色.
+ * 受け取るリクエストパラメータは性別,色。
  * 
  * @author soheinobe
  *
@@ -55,7 +55,7 @@ public class ShopRepository {
 	 * @param 色
 	 * @return　検索結果のリスト
 	 */
-	public List<Shop> findBySelect(Integer gender, String color) {
+	public List<Shop> findByGenderAndColor(Integer gender, String color) {
 		String sql = "select id,category,genre,gender,color,price,size from shops"
 				+ " where gender = :gender AND color = :color";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("gender", gender).addValue("color", color);

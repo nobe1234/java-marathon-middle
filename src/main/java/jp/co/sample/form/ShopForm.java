@@ -1,5 +1,7 @@
 package jp.co.sample.form;
 
+import java.util.List;
+
 /**
  * ショップのリクエストパラメータを受け取るフォーム.
  * 
@@ -22,6 +24,17 @@ public class ShopForm {
 	private Integer price;
 	/** サイズ */
 	private String size;
+	/** 性別リスト */
+	private List<Integer> genderList;
+	/** 色リスト */
+	private List<Integer> colorList;
+
+	@Override
+	public String toString() {
+		return "ShopForm [id=" + id + ", category=" + category + ", genre=" + genre + ", gender=" + gender + ", color="
+				+ color + ", price=" + price + ", size=" + size + ", genderList=" + genderList + ", colorList="
+				+ colorList + "]";
+	}
 
 	public Integer getId() {
 		return id;
@@ -79,10 +92,20 @@ public class ShopForm {
 		this.size = size;
 	}
 
-	@Override
-	public String toString() {
-		return "Shop [id=" + id + ", category=" + category + ", genre=" + genre + ", gender=" + gender + ", color="
-				+ color + ", price=" + price + ", size=" + size + "]";
+	public List<Integer> getGenderList() {
+		return genderList;
+	}
+
+	public void setGenderList(List<Integer> genderList) {
+		this.genderList = genderList;
+	}
+
+	public List<Integer> getColorList() {
+		return colorList;
+	}
+
+	public void setColorList(List<Integer> colorList) {
+		this.colorList = colorList;
 	}
 
 }

@@ -25,20 +25,20 @@
 </form>
 
 <!-- 表示エリア -->
-<c:forEach var="hotelList" items="${hotelList}">
+<c:forEach var="hotel" items="${hotelList}">
 <table border="1">
 <tr>
 <td>ホテル名</td>
-<td><c:out value="${hotelList.hotelName }"></c:out></td>
+<td><c:out value="${hotel.hotelName }"></c:out></td>
 </tr>
 <tr>
 <td>最寄り駅</td>
-<td><c:out value="${hotelList.nearestStation }"></c:out></td>
+<td><c:out value="${hotel.nearestStation }"></c:out></td>
 </tr>
 <tr>
 <td>価格</td>
 <!-- 価格 -->
-<td><fmt:formatNumber value="${hotelList.price }" pattern="###,###" /></td>
+<td><fmt:formatNumber value="${hotel.price }" pattern="###,###" /></td>
 </tr>
 </table>
 </c:forEach>

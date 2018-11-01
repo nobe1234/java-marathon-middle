@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.sample.domain.BaseballTeam;
+import jp.co.sample.form.BaseballTeamForm;
 import jp.co.sample.repository.BaseballTeamRepository;
 
 /**
@@ -58,7 +59,7 @@ public class BaseballTeamController {
 	 * @return
 	 */
 	@RequestMapping("/showTeamDetail")
-	public String showTeamDetail(BaseballTeam baseballTeamForm, Model model) {
+	public String showTeamDetail(BaseballTeamForm baseballTeamForm, Model model) {
 		BaseballTeam baseballTeam = repository.load(baseballTeamForm.getId());
 		model.addAttribute("baseballTeam", baseballTeam);
 		// チーム詳細の表示
