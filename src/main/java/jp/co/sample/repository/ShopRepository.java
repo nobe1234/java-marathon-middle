@@ -40,12 +40,20 @@ public class ShopRepository {
 		return shop;
 	};
 
+	//不要　レビューが終わったらDBから選択肢を取り出す方法も考えてみる。
+//	public List<Shop> findAll() {
+//		String sql = "select from shops order by ";
+//		
+//		List<Shop> selectList;
+//		return selectList;
+//	}
+
 	/**
 	 * 服の色と性別で検索するメソッド.
 	 * 
 	 * @param 性別
 	 * @param 色
-	 * @return　ショップリスト
+	 * @return　検索結果のリスト
 	 */
 	public List<Shop> findBySelect(Integer gender, String color) {
 		String sql = "select id,category,genre,gender,color,price,size from shops"

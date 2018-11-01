@@ -1,11 +1,14 @@
 package jp.co.sample.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import jp.co.sample.domain.Shop;
 import jp.co.sample.service.ShopService;
 
 /**
@@ -21,10 +24,10 @@ import jp.co.sample.service.ShopService;
 @RequestMapping("/shop")
 public class ShopController {
 
-	/**	サービスを注入 */
+	/** サービスを注入 */
 	@Autowired
 	private ShopService service;
-	
+
 	/**
 	 * 処理の起点となるメソッド.
 	 * 
@@ -36,7 +39,7 @@ public class ShopController {
 	public String index() {
 		return "/shop/searchClothes";
 	}
-	
+
 	/**
 	 * 検索結果を表示するメソッド.
 	 * 
@@ -45,9 +48,11 @@ public class ShopController {
 	 * @return 検索結果
 	 */
 	@RequestMapping("/searchClothes")
-	public String showSelectClothes(Model model) {
+	public String showSelectClothes(Integer gender, String color, Model model) {
+		List<Shop> shopList = service.findBySelect(gender, color);
+		model.addAttribute("shopList", shopList);
+
 		return "/shop/searchClothes";
 	}
-	
-	
+
 }
